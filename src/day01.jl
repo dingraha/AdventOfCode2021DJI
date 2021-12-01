@@ -5,9 +5,7 @@ function day01_get_input(input_fname=joinpath(@__DIR__, "input", "day01.txt"))
     return data[:, 1]
 end
 
-function day01()
-    # Get the data.
-    depths = day01_get_input()
+function day01(depths=day01_get_input())
     # Is the depth increasing?
     is_increasing = depths[2:end] .> depths[1:end-1]
     # Get the answer to part 1
@@ -30,10 +28,7 @@ function day01()
     return ans_part1, ans_part2
 end
 
-function day01_transducers()
-    # Get the data.
-    depths = day01_get_input()
-
+function day01_transducers(depths=day01_get_input())
     # Part 1:
     ans_part1 = depths |> Consecutive(2, 1) |> Map(xy->(xy[2]>xy[1])) |> count
 
