@@ -1,7 +1,8 @@
-name = "AdventOfCode2021"
+name = "AdventOfCode2021DJI"
 uuid = "3eebee72-6a59-4b89-9093-dab9c5cb8e88"
 authors = ["Daniel Ingraham <d.j.ingraham@gmail.com>"]
 version = "0.1.0"
 
 [deps]
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
+Transducers = "28d57a85-8fef-5791-bfe6-a80928e7c999"

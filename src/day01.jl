@@ -29,3 +29,16 @@ function day01()
 
     return ans_part1, ans_part2
 end
+
+function day01_transducers()
+    # Get the data.
+    depths = day01_get_input()
+
+    # Part 1:
+    ans_part1 = depths |> Consecutive(2, 1) |> Map(xy->(xy[2]>xy[1])) |> count
+
+    # Part 2:
+    ans_part2 = depths |> Consecutive(3, 1) |> Map(sum) |> Consecutive(2, 1) |> Map(xy->(xy[2]>xy[1])) |> count
+
+    return ans_part1, ans_part2
+end
