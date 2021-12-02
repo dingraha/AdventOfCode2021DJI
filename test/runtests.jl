@@ -14,3 +14,11 @@ using Test
         @test part2 == 1190
     end
 end
+
+@testset "Day 2" begin
+    @testset "vanilla" begin
+        part1, part2 = day02()
+        @test part1 == 1427868
+        @test part2 == 1568138742
+    end
+end
