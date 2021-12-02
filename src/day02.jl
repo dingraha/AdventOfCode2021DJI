@@ -43,16 +43,6 @@ function day02(data=day02_get_input())
 end
 
 function day02_transducers_part1(cmds, dists)
-    # function f(cmd, dist)
-    #     if cmd == "forward"
-    #         return (dist, 0)
-    #     elseif cmd == "down"
-    #         return (0, dist)
-    #     elseif cmd == "up"
-    #         return (0, -dist)
-    #     end
-    # end
-    # foldxl(+, zip(cmds, dists) |> MapSplat(f) |> Scan((old,new)->(old[1]+new[1], old[2]+new[2]), (0,0)) |> TakeLast(1) |> MapSplat(*))
     function f(horiz_depth, cmd_dist)
         horiz, depth = horiz_depth
         cmd, dist = cmd_dist
