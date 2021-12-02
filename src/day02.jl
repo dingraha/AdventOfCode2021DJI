@@ -43,39 +43,46 @@ function day02(data=day02_get_input())
 end
 
 function day02_transducers_part1(cmds, dists)
-    function f(horiz_depth, cmd_dist)
-        horiz, depth = horiz_depth
-        cmd, dist = cmd_dist
-        if cmd == "forward"
-            horiz += dist
-        elseif cmd == "down"
-            depth += dist
-        elseif cmd == "up"
-            depth -= dist
-        end
-        return horiz, depth
-    end
-    return foldl(*, zip(cmds, dists) |> Scan(f, (0, 0)) |> TakeLast(1) |> Cat())
+    return foldl(*,
+        zip(cmds, dists) |>
+        Scan((0, 0)) do horiz_depth, cmd_dist
+            horiz, depth = horiz_depth
+            cmd, dist = cmd_dist
+            if cmd == "forward"
+                horiz += dist
+            elseif cmd == "down"
+                depth += dist
+            elseif cmd == "up"
+                depth -= dist
+            end
+            return horiz, depth
+        end |>
+        TakeLast(1) |>
+        Cat())
 end
 
 function day02_transducers_part2(cmds, dists)
-    function f(horiz_depth_aim, cmd_dist)
-        horiz, depth, aim = horiz_depth_aim
-        cmd, dist = cmd_dist
-        if cmd == "forward"
-            horiz += dist
-            depth += aim*dist
-        elseif cmd == "down"
-            aim += dist
-        elseif cmd == "up"
-            aim -= dist
-        end
-        return horiz, depth, aim
-    end
     # Need TakeLast(1) to get the last position.
     # Cat() to convert the nested single tuple [(horiz, depth, aim)] to to just [horiz, depth, aim].
     # Then Take(2) to drop aim, just leaving horiz and depth to be multiplied by foldl(*, ...).
-    return foldl(*, zip(cmds, dists) |> Scan(f, (0, 0, 0)) |> TakeLast(1) |> Cat() |> Take(2))
+    return foldl(*,
+        zip(cmds, dists) |>
+        Scan((0, 0, 0)) do horiz_depth_aim, cmd_dist
+            horiz, depth, aim = horiz_depth_aim
+            cmd, dist = cmd_dist
+            if cmd == "forward"
+                horiz += dist
+                depth += aim*dist
+            elseif cmd == "down"
+                aim += dist
+            elseif cmd == "up"
+                aim -= dist
+            end
+            return horiz, depth, aim
+        end |>
+        TakeLast(1) |>
+        Cat() |>
+        Take(2))
 end
 
 function day02_transducers(data=day02_get_input())
