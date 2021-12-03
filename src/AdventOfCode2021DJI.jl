@@ -9,4 +9,7 @@ export day01, day01_transducers
 include("day02.jl")
 export day02, day02_transducers
 
+include("day03.jl")
+export day03
+
 end # module
