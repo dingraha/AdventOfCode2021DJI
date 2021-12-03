@@ -59,12 +59,16 @@ function day02_transducers_part1(cmds, dists)
         end |>
         TakeLast(1) |>
         Cat())
+        # MapSplat(*))
 end
 
 function day02_transducers_part2(cmds, dists)
     # Need TakeLast(1) to get the last position.
     # Cat() to convert the nested single tuple [(horiz, depth, aim)] to to just [horiz, depth, aim].
     # Then Take(2) to drop aim, just leaving horiz and depth to be multiplied by foldl(*, ...).
+    # Or I can just use MapSplat to extract the horiz and depth and do the
+    # multiplication.
+    # Saves 1 μs and a few allocations.
     return foldl(*,
         zip(cmds, dists) |>
         Scan((0, 0, 0)) do horiz_depth_aim, cmd_dist
@@ -81,8 +85,9 @@ function day02_transducers_part2(cmds, dists)
             return horiz, depth, aim
         end |>
         TakeLast(1) |>
-        Cat() |>
-        Take(2))
+        # Cat() |>
+        # Take(2))
+        MapSplat((a, b, c)->a*b))
 end
 
 function day02_transducers(data=day02_get_input())
