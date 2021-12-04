@@ -2,6 +2,7 @@ module AdventOfCode2021DJI
 
 using DelimitedFiles: readdlm
 using Transducers
+using LinearAlgebra: det
 
 include("day01.jl")
 export day01, day01_transducers
@@ -11,5 +12,8 @@ export day02, day02_transducers
 
 include("day03.jl")
 export day03
+
+include("day04.jl")
+export day04
 
 end # module

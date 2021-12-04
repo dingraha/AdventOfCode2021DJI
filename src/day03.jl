@@ -86,3 +86,20 @@ end
 function day03(data=day03_get_input())
     return day03_part1(data), day03_part2(data)
 end
+
+function day03_part1_transducers(data)
+    nrows = length(data)
+    ncols = length(first(data))
+    foo = data |> Scan(zeros(Int, ncols)) do nones, row
+            for (i, c) in enumerate(row)
+                if c == '1'
+                    nones[i] += 1
+                end
+            end
+            return nones 
+        end |>
+        TakeLast(1) |>
+        Cat() |>
+        Map(>(length(data)÷2)) |> collect
+    return foo
+end
