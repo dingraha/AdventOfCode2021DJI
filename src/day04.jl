@@ -49,7 +49,33 @@ function day04_part1(draws, boards)
 end
 
 function day04_part2(draws, boards)
-    return 0
+    # This time, I'll keep track of the order the boards win. 
+    win_order = Vector{Int}()
+    for draw in draws
+        for (i, board) in enumerate(boards)
+            # If this board has already won, skip it.
+            if ! (i in win_order)
+                # Find all the entries in board equal to draw.
+                mask = board .== draw
+                # Set them to zero.
+                board[mask] .= 0
+                # Check if this board is solved.
+                # What if there's a tie? I could save the winning boards in a
+                # different list.
+                if det(board) ≈ 0
+                    # We found a winning board.
+                    # We don't want that one anymore.
+                    # Save it as a winning board.
+                    push!(win_order, i)
+                end
+            end
+            # if win_order is now the same length as boards, then all the
+            # boards have won. So calculate the score of the final board.
+            if length(win_order) == length(boards)
+                return sum(board)*draw
+            end
+        end
+    end
 end
 
 function day04()

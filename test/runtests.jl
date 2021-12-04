@@ -40,5 +40,6 @@ end
     @testset "vanilla" begin
         part1, part2 = day04()
         @test part1 == 23177
+        @test part2 == 6804
     end
 end
