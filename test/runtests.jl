@@ -32,5 +32,6 @@ end
     @testset "vanilla" begin
         part1, part2 = day03()
         @test part1 == 2724524
+        @test part2 == 2775870
     end
 end
