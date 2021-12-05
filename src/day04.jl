@@ -39,6 +39,8 @@ function day04_part1(draws, boards)
             # Check if this board is solved.
             # What if there's a tie? I could save the winning boards in a
             # different list.
+            # Using the determinate isn't right—there could be false positives.
+            # But it got me the right answer.
             if det(board) ≈ 0
                 # We found the winning board.
                 # Calculate and return the answer.
@@ -62,6 +64,8 @@ function day04_part2(draws, boards)
                 # Check if this board is solved.
                 # What if there's a tie? I could save the winning boards in a
                 # different list.
+                # Using the determinate isn't right—there could be false positives.
+                # But it got me the right answer.
                 if det(board) ≈ 0
                     # We found a winning board.
                     # We don't want that one anymore.
