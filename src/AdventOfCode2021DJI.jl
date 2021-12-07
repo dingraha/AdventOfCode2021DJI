@@ -23,4 +23,7 @@ export day05
 include("day06.jl")
 export day06
 
+include("day07.jl")
+export day07
+
 end # module

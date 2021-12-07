@@ -59,3 +59,11 @@ end
         @test part2 == 1617359101538
     end
 end
+
+@testset "Day 7" begin
+    @testset "vanilla" begin
+        part1, part2 = day07()
+        @test part1 == 345197
+        @test part2 == 96361606
+    end
+end
