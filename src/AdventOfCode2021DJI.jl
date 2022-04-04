@@ -1,5 +1,6 @@
 module AdventOfCode2021DJI
 
+using Base.Iterators: flatten
 using DelimitedFiles: readdlm
 using Transducers
 using LinearAlgebra: det
@@ -28,5 +29,8 @@ export day07
 
 include("day08.jl")
 export day08
+
+include("day09.jl")
+export day09
 
 end # module
